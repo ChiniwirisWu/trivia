@@ -1,0 +1,27 @@
+<!DOCTYPE html5>
+{% load static %}
+<html lang='en'>
+	<head>
+		<title>Trivia</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{% static 'css/main.css' %}" rel="stylesheet" />
+	</head>
+	<body>
+		<div>
+			<h1>Welcome to Trivia!</h1>
+			<img src="{% static 'img/cute1.jpg' %}" id="pf" />
+			<p id="question">Welcome to Trivia, let's stimulate your brain a bit. Have fun dear User!</p>
+		</div>
+
+		<div id="form">
+			<form action="{% url 'trivia:general_view' %}" method="POST">
+				{% csrf_token %}
+				<button class="answer-btn" id="yes">General Trivia</button>
+			</form>
+			<form action="{% url 'trivia:personal_view' %}" method="POST">
+				{% csrf_token %}
+				<button class="answer-btn" id="no">Personal Trivia</button>
+			</form>
+		</div>
+	</body>
+</html>

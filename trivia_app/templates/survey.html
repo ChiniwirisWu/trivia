@@ -1,0 +1,30 @@
+<!DOCTYPE html5>
+{% load static %}
+<html lang='en'>
+	<head>
+		<title>Trivia</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="{% static 'css/survey.css' %}" rel="stylesheet" />
+	</head>
+	<body>
+		<p style="display: None" id="response">{{response}}</p>
+		<p style="display: None" id="mode">{{mode}}</p>
+		<div>
+			<form action="{% url 'trivia:main_view' %}">
+				<button>Exit</button>
+			</form>
+			<h1><b id="counter">6</b> Seg</h1>
+			<h1>Welcome to Trivia!</h1>
+			<img src="{% static 'img/cute1.jpg' %}" id="pf" />
+			<p id="question"></p>
+			<p id="correction"></p>
+		</div>
+
+		<form id='survey_form' action="#">
+			<button class="answer-btn" id="yes" value='yes'>Yes</button>
+			<button class="answer-btn" id="no" value='no'>No</button>
+		</form>
+		<script src="{% static 'js/survey.js'%}"></script>
+	</body>
+</html>
+

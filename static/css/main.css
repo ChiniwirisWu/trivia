@@ -1,0 +1,73 @@
+:root{
+	--darkBlue: #211C6A;
+	--clay: #59B4C3;
+	--green: #74E291;
+	--yellow: #EFF396;
+}
+
+html{
+	background-color: var(--yellow);
+	height: 100%;
+}
+
+body{
+	display: grid;
+	grid-template-rows: 60% 38%; 
+	height: 100%;
+	padding: 5px;
+}
+
+#form{
+	width: 100%;
+	display: flex;
+	/*background-color: var(--clay);*/
+	justify-content: space-evenly;
+}
+
+form{
+	flex-grow: 1;
+}
+
+h1, p {
+	color: var(--darkBlue)
+}
+
+h1{
+	text-align: center;
+}
+
+p{
+	margin-top: 50px;
+	max-height: 150px;
+	overflow: hidden;
+}
+
+#pf{
+	/*the trick is to make display: block and margin: auto*/
+	display: block; 
+	width: 150px;
+	height: 150px;
+	object-fit: cover;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.answer-btn{
+	border: none;
+	cursor: pointer;
+	width: 95%;
+	height: 100%;
+}
+
+#yes{
+	background-color: var(--green);
+}
+
+#no{
+	background-color: var(--clay);
+}
+
+
+.answer-btn:hover{
+	opacity: 0.4;
+}
