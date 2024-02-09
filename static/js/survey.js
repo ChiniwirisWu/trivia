@@ -1,21 +1,34 @@
-mode = document.getElementById('mode').textContent
-counter = document.getElementById('counter')
 // FIRST SETUP
-
-const startGame = ()=>{
-	correction_message = document.getElementById('correction')
-	correction_message.classList.remove('correct-answer')
-	correction_message.classList.remove('wrong-answer')
-	correction_message.textContent = ''
-	if (mode == 'general'){
+function startGame(){
+	mode = document.getElementById('mode').textContent
+	setDefaultSettings()
+	if(mode == 'general'){
 		generalTrivia()
 	} else{
 		personalTrivia()
 	}
 }
 
+function countdown(){
+	counter = document.getElementById('counter')
+	actual_sec = counter.textContent
+	if(actual_sec == 1){
+		actual_sec = 8
+	} else{
+		actual_sec--
+	}
+	counter.textContent = actual_sec
+}
+
+function setDefaultSettings(){
+	correction_message = document.getElementById('correction')
+	correction_message.classList.remove('wrong-answer')
+	correction_message.classList.remove('correct-answer')
+	correction_message.textContent = ''
+}
+
 //GENERAL TRIVIA
-function generalTrivia(questions){
+function generalTrivia(){
 
 	questions = JSON.parse(response.textContent) //object {'general': dict(), 'personal': list[]} 
 	response = document.getElementById('response')
@@ -46,7 +59,7 @@ function generalTrivia(questions){
 } 	
 
 //PERSONAL TRIVIA
-function personalTrivia(questions){
+function personalTrivia(){
 
 	questions = JSON.parse(response.textContent) //object {'general': dict(), 'personal': list[]} 
 	response = document.getElementById('response')
@@ -61,11 +74,17 @@ function personalTrivia(questions){
 
 	//Event Handlers
 	yes_btn.addEventListener('click', (e)=>{
-		counter = 5
+		correction_message = document.getElementById('correction')
+		correction_message.classList.remove('wrong-answer')
+		correction_message.classList.add('correct-answer')
+		correction_message.textContent = 'You answer Yes!'
 	})
 
 	no_btn.addEventListener('click', (e)=>{
-		counter = 5
+		correction_message = document.getElementById('correction')
+		correction_message.classList.remove('correct-answer')
+		correction_message.classList.add('wrong-answer')
+		correction_message.textContent = 'You answer No!'
 	})
 }
 
@@ -92,17 +111,7 @@ function votation (event, vote){
 	}
 }
 
-function substractCounter(){
-	seg = counter.textContent
-	if(seg == 6){
-		startGame()
-	}
 
-	newTime = seg - 1
-	if(newTime == 0){
-		newTime = 6
-	}
-	counter.textContent = `${newTime}`
-}
-
-setInterval(substractCounter, 1000)
+startGame()
+setInterval(startGame, 8000) 
+setInterval(countdown, 950)
