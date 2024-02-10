@@ -11,6 +11,8 @@ html{
 }
 
 body{
+	width: 500px;
+	margin:auto;
 	display: grid;
 	grid-template-rows: 60% 38%; 
 	height: 100%;

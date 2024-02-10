@@ -1,5 +1,11 @@
 // FIRST SETUP
-function startGame(){
+let oldcountdown = setInterval(console.log('hi'), 1)
+let counter = 0
+let audio = document.getElementById('correct-sound')
+console.log(audio)
+
+const startGame = ()=> {
+	counter++
 	mode = document.getElementById('mode').textContent
 	setDefaultSettings()
 	if(mode == 'general'){
@@ -21,10 +27,12 @@ function countdown(){
 }
 
 function setDefaultSettings(){
+	counter = document.getElementById('counter')
 	correction_message = document.getElementById('correction')
 	correction_message.classList.remove('wrong-answer')
 	correction_message.classList.remove('correct-answer')
 	correction_message.textContent = ''
+	counter.textContent = 8
 }
 
 //GENERAL TRIVIA
@@ -61,6 +69,7 @@ function generalTrivia(){
 //PERSONAL TRIVIA
 function personalTrivia(){
 
+	correct_audio = document.getElementById('correct-sound')
 	questions = JSON.parse(response.textContent) //object {'general': dict(), 'personal': list[]} 
 	response = document.getElementById('response')
 	question_message = document.getElementById('question')
@@ -78,6 +87,7 @@ function personalTrivia(){
 		correction_message.classList.remove('wrong-answer')
 		correction_message.classList.add('correct-answer')
 		correction_message.textContent = 'You answer Yes!'
+		correct_audio.play()
 	})
 
 	no_btn.addEventListener('click', (e)=>{
@@ -85,6 +95,7 @@ function personalTrivia(){
 		correction_message.classList.remove('correct-answer')
 		correction_message.classList.add('wrong-answer')
 		correction_message.textContent = 'You answer No!'
+		correct_audio.play()
 	})
 }
 
@@ -98,20 +109,28 @@ function randomNumber(max){
 
 
 function votation (event, vote){
+	correct_audio = document.getElementById('correct-sound')
+	wrong_audio = document.getElementById('wrong-sound')
 	console.log('hola')
 	user_vote = vote; 
 	if(user_vote == answer){
 		correction_message.classList.remove('wrong-answer')
 		correction_message.classList.add('correct-answer')
 		correction_message.textContent = 'That Is Correct!'
+		correct_audio.play()
 	} else{
 		correction_message.classList.remove('correct-answer')
 		correction_message.classList.add('wrong-answer')
 		correction_message.textContent = 'That Is Incorrect!'
+		wrong_audio.play()
 	}
 }
 
-
+//I am proud of this
 startGame()
-setInterval(startGame, 8000) 
-setInterval(countdown, 950)
+countdownID = setInterval(countdown, 1000)
+setInterval(()=>{
+	startGame()
+	clearInterval(countdownID)
+	countdownID = setInterval(countdown, 1000)
+}, 8000)

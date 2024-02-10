@@ -27,6 +27,5 @@ def getTriviaQuestions():
        'general': general_questions.set_index('questions').to_dict()['answers'],
        'personal': list(personal_questions['questions']),
     }
-   print(response)
    return json.dumps(response)
 

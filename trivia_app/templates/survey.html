@@ -24,6 +24,12 @@
 			<button class="answer-btn" id="yes" value='yes'>Yes</button>
 			<button class="answer-btn" id="no" value='no'>No</button>
 		</form>
+		<audio id="correct-sound">
+			<source src="{% static 'audio/Correct Answer.mp3' %}"  />
+		</audio>
+		<audio id="wrong-sound">
+			<source src="{% static 'audio/Wrong answer.wav' %}"  />
+		</audio>
 		<script src="{% static 'js/survey.js'%}"></script>
 	</body>
 </html>
