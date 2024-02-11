@@ -1,11 +1,5 @@
 // FIRST SETUP
-let oldcountdown = setInterval(console.log('hi'), 1)
-let counter = 0
-let audio = document.getElementById('correct-sound')
-console.log(audio)
-
 const startGame = ()=> {
-	counter++
 	mode = document.getElementById('mode').textContent
 	setDefaultSettings()
 	if(mode == 'general'){
@@ -55,6 +49,7 @@ function generalTrivia(){
 		console.log(counter)
 		if(counter == index){
 			question_message.textContent = key
+			readQuestion(key)
 			anwer = questions[key]
 			break
 		}
@@ -79,6 +74,7 @@ function personalTrivia(){
 	questions = questions['personal']
 	question = questions[randomNumber(questions.length)]
 	question_message.textContent = question
+	readQuestion(question)
 
 
 	//Event Handlers
@@ -107,6 +103,16 @@ function randomNumber(max){
 	return num
 }
 
+function readQuestion(question){
+	syth = speechSynthesis
+	voices = syth.getVoices()
+	if(voices.length < 0){
+		utterThis = speechSynthesisUtterance(question)
+		utterThis.voice = voices[0]
+		syth.speak(utterThis)
+	}
+}
+
 
 function votation (event, vote){
 	correct_audio = document.getElementById('correct-sound')
@@ -126,11 +132,25 @@ function votation (event, vote){
 	}
 }
 
+loaded = 0
+const loadingBar = () =>{
+	const loadingBar = document.getElementById('load-bar')
+	loaded = loaded + 100 * (1/8)
+	loadingBar.style.width = `${loaded}%`
+	console.log(loaded)
+	if(loaded > 80){
+		loaded = 0
+	}
+}
+
 //I am proud of this
 startGame()
 countdownID = setInterval(countdown, 1000)
+barCountdownID = setInterval(loadingBar, 1000)
 setInterval(()=>{
 	startGame()
 	clearInterval(countdownID)
+	clearInterval(barCountdownID)
 	countdownID = setInterval(countdown, 1000)
+	barCountdownID = setInterval(loadingBar, 1000)
 }, 8000)

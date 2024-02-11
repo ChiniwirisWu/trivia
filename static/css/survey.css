@@ -5,6 +5,7 @@
 	--yellow: #EFF396;
 }
 
+
 html{
 	background-color: var(--yellow);
 	height: 100%;
@@ -48,6 +49,7 @@ form{
 	object-fit: cover;
 	margin: auto;
 	margin-top: 50px;
+	box-shadow: 0px 0px 40px #fff;
 }
 
 .answer-btn{
@@ -56,6 +58,7 @@ form{
 	margin-top: 50px;
 	width: 49%;
 	height: 60%;
+	transition: .3s;
 }
 
 #yes{
@@ -66,9 +69,17 @@ form{
 	background-color: var(--clay);
 }
 
+#yes:hover{
+	background-color: #9bdead;
+}
+
+#no:hover{
+	background-color: #70c0cc;
+}
+
 
 .answer-btn:hover{
-	opacity: 0.4;
+	box-shadow: 0px 0px 20px #fff;
 }
 
 .correct-answer{
@@ -84,4 +95,11 @@ form{
 	color: red;
 	padding: 10px 0px;
 	font-weight: 900;
+}
+
+
+#load-bar{
+	width: 0%;
+	background-color: var(--green);
+	height: 30px;
 }

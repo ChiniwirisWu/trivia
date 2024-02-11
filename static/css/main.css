@@ -52,6 +52,7 @@ p{
 	object-fit: cover;
 	margin: auto;
 	margin-top: 50px;
+	box-shadow: 0px 0px 40px #fff;
 }
 
 .answer-btn{
@@ -59,6 +60,7 @@ p{
 	cursor: pointer;
 	width: 95%;
 	height: 100%;
+	transition: .3s;
 }
 
 #yes{
@@ -70,6 +72,14 @@ p{
 }
 
 
+#yes:hover{
+	background-color: #9bdead;
+}
+
+#no:hover{
+	background-color: #70c0cc;
+
+
 .answer-btn:hover{
-	opacity: 0.4;
+	box-shadow: 0px 0px 20px #fff;
 }
